@@ -14,7 +14,8 @@
       "$http", 
       "JSONPSvr", 
       "$routeParams", 
-      function($scope, $http, JSONPSvr, $routeParams){
+      "$route",
+      function($scope, $http, JSONPSvr, $routeParams, $route){
         // 如果值没有传入，默认为undefined
         // console.log($routeParams.page);
 
@@ -35,6 +36,24 @@
           $scope.totalPages = Math.ceil(data.total / $scope.pageSize);
           // 由于异步请求，数据获得后，angular无法再次渲染数据，需要强制脏检查
           $scope.$apply();
+
+          // 实现上一页和下一页翻页功能
+          $scope.goPages = function(current) {
+
+            // 限制页面的范围1~最大页
+            if(current <= 0 || current > $scope.totalPages){
+              return; // 此时不再执行下面的代码, 即不再发生改变
+            }
+
+            // current表示传递过来的当前页
+            $scope.curPage = current;
+
+            // 通过调用updateParams来更新路由中的参数
+            // 参数为一个对象，对象的属性为路由配置好的参数-page
+            $route.updateParams({page: current});
+            // angular内部默认行为
+            // 只要路由的参数发生了改变，就会重新执行控制器中的代码
+          }
       });
 
     }])
