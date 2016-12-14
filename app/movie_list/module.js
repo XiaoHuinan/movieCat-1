@@ -1,5 +1,4 @@
 (function(angular){
-  // 创建正在热映模块
   angular.module("moviecat.movie_list", ["ngRoute"])
     .config(['$routeProvider',function($routeProvider) {
       $routeProvider.when("/:movieType/:page?", {
