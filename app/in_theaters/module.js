@@ -42,11 +42,13 @@
 
             // 限制页面的范围1~最大页
             if(current <= 0 || current > $scope.totalPages){
-              return; // 此时不再执行下面的代码, 即不再发生改变
+              return; // 此时不再执行下面的代码, 即不再发生改变 
             }
 
+            // 因为路由发生改变，会导致对应的控制器中的代码重新执行一遍
+            // 这句话可以省略
             // current表示传递过来的当前页
-            $scope.curPage = current;
+            // $scope.curPage = current;
 
             // 通过调用updateParams来更新路由中的参数
             // 参数为一个对象，对象的属性为路由配置好的参数-page

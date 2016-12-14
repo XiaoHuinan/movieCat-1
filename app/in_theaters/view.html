@@ -15,8 +15,8 @@
     <div class="paging">
         <label>总共：{{movie.total}}条记录,第{{curPage}}/{{totalPages}}页;</label>
         <!-- 加上disable类样式，表示按钮禁用状态 -->
-        <button class="prev disable" ng-click="goPages(curPage-1)">上一页</button>
-        <button class="next" ng-click="goPages(curPage-0+1)">下一页</button>
+        <button class="prev" ng-class="{disable: +curPage===1}" ng-click="goPages(curPage-1)">上一页</button>
+        <button class="next" ng-class="{disable: +curPage===totalPages}" ng-click="goPages(curPage-0+1)">下一页</button>
     </div>
 </div>
-<!--电影列表结束
+<!--电影列表结束-->
