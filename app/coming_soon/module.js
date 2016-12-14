@@ -7,7 +7,13 @@
         controller: "ComingSoonController"
       })
     }])
-    .controller("ComingSoonController", ["$scope", function($scope){
-
+    .controller("ComingSoonController", ["$scope", "$http", function($scope, $http){
+      $http.get("./coming_soon/data.json")
+          .then(function(response){
+            $scope.movie = response.data;
+            console.log($scope.movie)
+          },function(response){
+            console.log("error");
+          })
     }])
 })(angular)

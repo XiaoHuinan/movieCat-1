@@ -7,7 +7,12 @@
         controller: "top250Controller"
       })
     }])
-    .controller("top250Controller", ["$scope", function($scope){
-
+    .controller("top250Controller", ["$scope", "$http", function($scope, $http){
+      $http.get("./top250/data.json")
+          .then(function(response){
+            $scope.movie = response.data;
+          }, function(response){
+            console.log("error");
+          })
     }])
 })(angular)
