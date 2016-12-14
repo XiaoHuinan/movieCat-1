@@ -1,6 +1,6 @@
 (function(angular){
   angular.module("moviecat.jsonp", [])
-    .service("JSONP", ["$window", function($window){
+    .service("JSONPSvr", ["$window", function($window){
       var doc = $window.document;
 
       // jsonp方法的作用，用来发送jsonp请求获取数据
